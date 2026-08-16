@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <title>אלבום הטיול המשפחתי</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 99%, #fecfef 100%);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      overflow-x: hidden;
+    }
+
+    /* כותרת ראשית */
+    h1 {
+      color: #fff;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+      margin-top: 30px;
+      font-size: 2.8rem;
+    }
+
+    /* מכולת הריבועים (Grid) */
+    .grid-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+      width: 80%;
+      max-width: 1000px;
+      margin: 40px 0;
+      z-index: 10;
+    }
+
+    /* הריבועים של הימים/המקומות */
+    .card {
+      background: rgba(255, 255, 255, 0.85);
+      border-radius: 15px;
+      padding: 25px;
+      text-align: center;
+      box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+      cursor: pointer;
+      transition: transform 0.3s, background 0.3s;
+    }
+
+    .card:hover {
+      transform: translateY(-8px) scale(1.03);
+      background: #ffffff;
+    }
+
+    .card h3 {
+      margin: 0 0 10px 0;
+      color: #333;
+    }
+
+    .btn-action {
+      background-color: #ff6b6b;
+      color: white;
+      border: none;
+      padding: 8px 15px;
+      border-radius: 20px;
+      cursor: pointer;
+      font-weight: bold;
+      margin-top: 10px;
+      transition: background 0.2s;
+    }
+
+    .btn-action:hover {
+      background-color: #ee5253;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>הטיול המטורף שלנו ✈️</h1>
+
+  <!-- תפריט הריבועים -->
+  <div class="grid-container">
+    <div class="card">
+      <h3>יום 1: אגם המלכים</h3>
+      <button class="btn-action" onclick="openGenerator('אגם המלכים')">🎬 צור קליפ רנדומלי</button>
+    </div>
+    <div class="card">
+      <h3>יום 2: פלאך</h3>
+      <button class="btn-action" onclick="openGenerator('פלאך')">🎬 צור קליפ רנדומלי</button>
+    </div>
+    <div class="card">
+      <h3>יום 3: מגלשות אלפיניות</h3>
+      <button class="btn-action" onclick="openGenerator('מגלשות אלפיניות')">🎬 צור קליפ רנדומלי</button>
+    </div>
+  </div>
+
+  <script>
+    function openGenerator(locationName) {
+      alert("מנגנון המחולל האוטומטי עבור " + locationName + " יופעל בשלב הבא!");
+    }
+  </script>
+</body>
+</html>
