@@ -74,7 +74,6 @@
       position: relative;
     }
 
-    /* כותרת מותג ענקית וגזעית */
     .main-title {
       font-family: 'Black Ops One', cursive;
       font-size: clamp(3.5rem, 10vw, 6.5rem);
@@ -113,7 +112,6 @@
       100% { transform: rotate(-1deg) translateY(-8px); }
     }
 
-    /* גריד גמיש ומלא */
     .grid-container {
       display: flex;
       flex-wrap: wrap;
@@ -124,7 +122,6 @@
       justify-content: center;
     }
 
-    /* כרטיסייה אינטראקטיבית שמתחילה מחוץ למסך */
     .card {
       background: #fff;
       border: 4px solid var(--border-dark);
@@ -142,26 +139,21 @@
       box-shadow: 8px 8px 0px var(--border-dark);
       position: relative;
       z-index: 1;
-      
-      /* מצב התחלתי לפני הגלילה (אנימציית כניסה) */
       opacity: 0;
       transform: translateY(60px) scale(0.8) rotate(-10deg);
       transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease;
     }
 
-    /* קלאס שנכנס בעת גלילה */
     .card.reveal {
       opacity: 1;
     }
 
-    /* הטיות אקראיות אחרי כניסה */
     .card.reveal:nth-child(5n+1) { transform: rotate(-3deg); background: var(--card-turquoise); }
     .card.reveal:nth-child(5n+2) { transform: rotate(4deg); background: var(--card-orange); }
     .card.reveal:nth-child(5n+3) { transform: rotate(-2deg); background: var(--card-yellow); }
     .card.reveal:nth-child(5n+4) { transform: rotate(5deg); background: var(--card-pink); }
     .card.reveal:nth-child(5n+5) { transform: rotate(-4deg); background: var(--card-green); }
 
-    /* במעבר עכבר - קפיצה והתיישרות */
     .card.reveal:hover {
       transform: rotate(0deg) translateY(-12px) scale(1.1) !important;
       box-shadow: 16px 16px 0px var(--border-dark);
@@ -202,6 +194,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
+      gap: 15px;
       margin-bottom: 30px;
     }
 
@@ -290,8 +283,8 @@
   <!-- עמוד גלריה -->
   <div id="gallery-page" class="view-section">
     <div class="nav-bar">
-      <button class="btn-pop" onclick="showHome()">➔ חזרה</button>
-      <button class="btn-pop btn-action-video" onclick="generateVideo()">🎬 יצירת וידאו</button>
+      <button class="btn-pop" onclick="showHome()">➔ לעוד ימים וואו</button>
+      <button class="btn-pop btn-action-video" onclick="generateVideo()">🎬 לראות אותנו בלייב</button>
     </div>
 
     <div class="sub-title" id="day-title" style="transform: none; margin-bottom: 25px;"></div>
@@ -321,7 +314,6 @@
       alert("מנגנון יצירת הוידאו עבור " + currentDayName + " יופעל ברגע שנחבר את התמונות!");
     }
 
-    /* מנגנון הנפשת גלילה לבאות הריבועים */
     function revealOnScroll() {
       const cards = document.querySelectorAll('.card');
       const windowHeight = window.innerHeight;
@@ -331,7 +323,7 @@
         if (cardTop < windowHeight - 50) {
           setTimeout(() => {
             card.classList.add('reveal');
-          }, (index % 3) * 100); // דיליי עדין בין ריבוע לריבוע
+          }, (index % 3) * 100);
         }
       });
     }
