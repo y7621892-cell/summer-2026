@@ -6,14 +6,15 @@
   <title>SUMMER 2026 - אהרמנים מזלות</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Rubik:wght@800;900&display=swap" rel="stylesheet">
   <style>
     :root {
-      --border-dark: #1b4332;
-      --card-mint: #a8e6cf;
-      --card-blue: #81d4fa;
-      --card-yellow: #ffd3b6;
-      --card-peach: #ffaaa5;
+      --border-dark: #0f281e;
+      --card-turquoise: #00d2d3;
+      --card-green: #10ac84;
+      --card-orange: #ff9f43;
+      --card-yellow: #feca57;
+      --card-pink: #ff6b6b;
     }
 
     * {
@@ -22,8 +23,8 @@
 
     body {
       margin: 0;
-      font-family: 'Assistant', sans-serif;
-      background-color: #e0f7fa;
+      font-family: 'Rubik', sans-serif;
+      background-color: #48dbfb;
       color: var(--border-dark);
       min-height: 100vh;
       padding: 40px 20px;
@@ -31,30 +32,30 @@
       position: relative;
     }
 
-    /* אורות צבעוניים זזים ברקע */
+    /* אורות דינמיים ברקע */
     .bg-blob-1, .bg-blob-2 {
       position: fixed;
-      width: 500px;
-      height: 500px;
+      width: 550px;
+      height: 550px;
       border-radius: 50%;
-      filter: blur(80px);
-      opacity: 0.6;
+      filter: blur(70px);
+      opacity: 0.85;
       z-index: -1;
       pointer-events: none;
     }
 
     .bg-blob-1 {
-      background: #ffaaa5;
+      background: #ff6b6b;
       top: -100px;
       left: -100px;
-      animation: moveBlob1 12s infinite alternate ease-in-out;
+      animation: moveBlob1 10s infinite alternate ease-in-out;
     }
 
     .bg-blob-2 {
-      background: #ffd3b6;
+      background: #feca57;
       bottom: -100px;
       right: -100px;
-      animation: moveBlob2 10s infinite alternate ease-in-out;
+      animation: moveBlob2 8s infinite alternate ease-in-out;
     }
 
     @keyframes moveBlob1 {
@@ -69,60 +70,69 @@
 
     header {
       text-align: center;
-      margin-bottom: 60px;
+      margin-bottom: 70px;
       position: relative;
     }
 
+    /* כותרת מותג ענקית וגזעית */
     .main-title {
-      font-size: 4.5rem;
+      font-family: 'Black Ops One', cursive;
+      font-size: clamp(3.5rem, 10vw, 6.5rem);
       font-weight: 900;
-      color: #2d6a4f;
-      text-shadow: 6px 6px 0px var(--border-dark);
+      color: #ffffff;
+      text-shadow: 8px 8px 0px var(--border-dark), 0 0 20px rgba(0,0,0,0.2);
       margin: 0;
-      letter-spacing: 3px;
+      letter-spacing: 4px;
       display: inline-block;
-      animation: waveTitle 4s ease-in-out infinite alternate;
+      line-height: 1;
+      animation: megaPulse 3s ease-in-out infinite alternate;
     }
 
-    @keyframes waveTitle {
-      0% { transform: translateY(0) rotate(-1.5deg); }
-      50% { transform: translateY(-10px) rotate(1deg); }
-      100% { transform: translateY(0) rotate(-1.5deg); }
+    @keyframes megaPulse {
+      0% { transform: scale(1) rotate(-2deg); }
+      100% { transform: scale(1.04) rotate(1deg); }
     }
 
     .sub-title {
-      font-size: 2rem;
-      font-weight: 800;
-      background: #ffd166;
+      font-size: clamp(1.8rem, 5vw, 2.8rem);
+      font-weight: 900;
+      background: #feca57;
       color: var(--border-dark);
       display: inline-block;
-      padding: 8px 24px;
-      border: 3.5px solid var(--border-dark);
-      box-shadow: 5px 5px 0px var(--border-dark);
-      margin-top: 15px;
-      transform: rotate(1deg);
+      padding: 10px 30px;
+      border: 4px solid var(--border-dark);
+      box-shadow: 6px 6px 0px var(--border-dark);
+      margin-top: 20px;
+      transform: rotate(2deg);
+      border-radius: 12px;
       animation: floatSub 3s ease-in-out infinite alternate;
     }
 
     @keyframes floatSub {
-      0% { transform: rotate(1deg) scale(1); }
-      100% { transform: rotate(-1deg) scale(1.04); }
+      0% { transform: rotate(2deg) translateY(0); }
+      100% { transform: rotate(-1deg) translateY(-8px); }
     }
 
+    /* גריד גמיש ומלא */
     .grid-container {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      display: flex;
+      flex-wrap: wrap;
       gap: 35px 25px;
       max-width: 1200px;
       margin: 0 auto;
       padding: 20px;
+      justify-content: center;
     }
 
+    /* כרטיסייה אינטראקטיבית שמתחילה מחוץ למסך */
     .card {
       background: #fff;
-      border: 3.5px solid var(--border-dark);
+      border: 4px solid var(--border-dark);
       border-radius: 24px;
-      aspect-ratio: 1 / 1;
+      min-width: 220px;
+      flex: 1 1 220px;
+      max-width: 280px;
+      min-height: 220px;
       padding: 20px;
       display: flex;
       align-items: center;
@@ -130,21 +140,31 @@
       text-align: center;
       cursor: pointer;
       box-shadow: 8px 8px 0px var(--border-dark);
-      transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
       position: relative;
       z-index: 1;
+      
+      /* מצב התחלתי לפני הגלילה (אנימציית כניסה) */
+      opacity: 0;
+      transform: translateY(60px) scale(0.8) rotate(-10deg);
+      transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease;
     }
 
-    .card:nth-child(6n+1) { transform: rotate(-3deg); background: var(--card-mint); }
-    .card:nth-child(6n+2) { transform: rotate(4deg); background: var(--card-blue); }
-    .card:nth-child(6n+3) { transform: rotate(-2deg); background: var(--card-yellow); }
-    .card:nth-child(6n+4) { transform: rotate(5deg); background: var(--card-peach); }
-    .card:nth-child(6n+5) { transform: rotate(-4deg); background: var(--card-mint); }
-    .card:nth-child(6n+6) { transform: rotate(2deg); background: var(--card-blue); }
+    /* קלאס שנכנס בעת גלילה */
+    .card.reveal {
+      opacity: 1;
+    }
 
-    .card:hover {
-      transform: rotate(0deg) translateY(-10px) scale(1.08) !important;
-      box-shadow: 14px 14px 0px var(--border-dark);
+    /* הטיות אקראיות אחרי כניסה */
+    .card.reveal:nth-child(5n+1) { transform: rotate(-3deg); background: var(--card-turquoise); }
+    .card.reveal:nth-child(5n+2) { transform: rotate(4deg); background: var(--card-orange); }
+    .card.reveal:nth-child(5n+3) { transform: rotate(-2deg); background: var(--card-yellow); }
+    .card.reveal:nth-child(5n+4) { transform: rotate(5deg); background: var(--card-pink); }
+    .card.reveal:nth-child(5n+5) { transform: rotate(-4deg); background: var(--card-green); }
+
+    /* במעבר עכבר - קפיצה והתיישרות */
+    .card.reveal:hover {
+      transform: rotate(0deg) translateY(-12px) scale(1.1) !important;
+      box-shadow: 16px 16px 0px var(--border-dark);
       z-index: 10;
     }
 
@@ -154,10 +174,10 @@
     }
 
     .card h3 {
-      font-size: 1.3rem;
+      font-size: 1.4rem;
       font-weight: 900;
       margin: 0;
-      line-height: 1.35;
+      line-height: 1.3;
       color: var(--border-dark);
     }
 
@@ -190,7 +210,7 @@
       border: 3.5px solid var(--border-dark);
       box-shadow: 5px 5px 0px var(--border-dark);
       padding: 12px 24px;
-      font-family: 'Assistant', sans-serif;
+      font-family: 'Rubik', sans-serif;
       font-weight: 900;
       font-size: 1.1rem;
       cursor: pointer;
@@ -203,14 +223,9 @@
       box-shadow: 8px 8px 0px var(--border-dark);
     }
 
-    .btn-pop:active {
-      transform: translateY(2px);
-      box-shadow: 2px 2px 0px var(--border-dark);
-    }
-
     .btn-action-video {
-      background: #06d6a0;
-      color: var(--border-dark);
+      background: #10ac84;
+      color: #ffffff;
     }
 
     .empty-box {
@@ -305,6 +320,24 @@
     function generateVideo() {
       alert("מנגנון יצירת הוידאו עבור " + currentDayName + " יופעל ברגע שנחבר את התמונות!");
     }
+
+    /* מנגנון הנפשת גלילה לבאות הריבועים */
+    function revealOnScroll() {
+      const cards = document.querySelectorAll('.card');
+      const windowHeight = window.innerHeight;
+
+      cards.forEach((card, index) => {
+        const cardTop = card.getBoundingClientRect().top;
+        if (cardTop < windowHeight - 50) {
+          setTimeout(() => {
+            card.classList.add('reveal');
+          }, (index % 3) * 100); // דיליי עדין בין ריבוע לריבוע
+        }
+      });
+    }
+
+    window.addEventListener('scroll', revealOnScroll);
+    window.addEventListener('load', revealOnScroll);
   </script>
 </body>
 </html>
