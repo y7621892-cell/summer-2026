@@ -16,6 +16,7 @@
       --card-orange: #ff9f43;
       --card-yellow: #feca57;
       --card-pink: #ff6b6b;
+      --btn-solid-color: #1dd1a1;
     }
 
     * { box-sizing: border-box; }
@@ -83,45 +84,61 @@
 
     .sub-title:hover { transform: rotate(0deg) scale(1.08) !important; }
 
-    /* כפתור עגול, צבעוני ומסתובב אינסופית */
-    .quote-btn-wrapper {
-      text-align: center;
-      margin: 30px 0;
-    }
-
-    .btn-spin-circle {
-      width: 110px;
-      height: 110px;
+    /* כפתור עגול - גם מסתובב וגם גדל/קטן בלולאה אינסופית */
+    .quote-side-btn {
+      position: fixed;
+      top: 25px;
+      right: 25px;
+      z-index: 90;
+      width: 90px;
+      height: 90px;
       border-radius: 50%;
-      background: conic-gradient(#ff6b6b, #feca57, #10ac84, #00d2d3, #ff6b6b);
+      background-color: var(--btn-solid-color);
       border: 4px solid var(--border-dark);
-      box-shadow: 6px 6px 0px var(--border-dark);
+      box-shadow: 5px 5px 0px var(--border-dark);
       cursor: pointer;
-      display: inline-flex;
+      display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      color: #fff;
+      color: var(--border-dark);
       font-weight: 900;
-      font-size: 1.1rem;
-      text-shadow: 2px 2px 0px var(--border-dark);
-      animation: spinContinuous 6s linear infinite;
-      transition: transform 0.2s, box-shadow 0.2s;
+      font-size: 0.95rem;
+      line-height: 1.2;
+      animation: spinAndPulse 8s linear infinite;
+      transition: background-color 0.3s ease, box-shadow 0.3s ease;
     }
 
-    .btn-spin-circle:hover {
+    .quote-side-btn:hover {
       animation-play-state: paused;
-      transform: scale(1.15) rotate(10deg);
-      box-shadow: 10px 10px 0px var(--border-dark);
+      transform: scale(1.15) rotate(0deg);
+      background-color: #10ac84;
+      color: #fff;
+      box-shadow: 8px 8px 0px var(--border-dark);
     }
 
-    .btn-spin-circle span {
+    .quote-side-btn span {
       pointer-events: none;
+      text-align: center;
     }
 
-    @keyframes spinContinuous {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
+    /* קומבינציה של סיבוב 360 מעלות + גדילה והקטנה (Pulse) */
+    @keyframes spinAndPulse {
+      0% {
+        transform: rotate(0deg) scale(1);
+      }
+      25% {
+        transform: rotate(90deg) scale(1.12);
+      }
+      50% {
+        transform: rotate(180deg) scale(1);
+      }
+      75% {
+        transform: rotate(270deg) scale(1.12);
+      }
+      100% {
+        transform: rotate(360deg) scale(1);
+      }
     }
 
     .grid-container {
@@ -214,7 +231,7 @@
 
     .modal-card h2 { font-size: clamp(2.2rem, 6vw, 3.8rem); font-weight: 900; color: #ffffff; text-shadow: 5px 5px 0px var(--border-dark); margin-bottom: 20px; }
 
-    /* כפתור הגדרות ניהול מוצנע בקצה החלון */
+    /* כפתור הגדרות מוצנע */
     .btn-settings-toggle {
       position: absolute;
       top: 15px;
@@ -223,13 +240,11 @@
       border: none;
       font-size: 1.2rem;
       cursor: pointer;
-      opacity: 0.6;
+      opacity: 0.5;
       transition: opacity 0.2s;
     }
 
-    .btn-settings-toggle:hover {
-      opacity: 1;
-    }
+    .btn-settings-toggle:hover { opacity: 1; }
 
     .quote-manage-panel {
       display: none;
@@ -238,9 +253,7 @@
       border-top: 2px dashed var(--border-dark);
     }
 
-    .quote-manage-panel.show {
-      display: block;
-    }
+    .quote-manage-panel.show { display: block; }
 
     .quote-input-group {
       display: flex;
@@ -278,6 +291,16 @@
       0% { transform: translateY(0) rotate(0deg); opacity: 1; }
       100% { transform: translateY(500px) rotate(720deg); opacity: 0; }
     }
+
+    @media (max-width: 600px) {
+      .quote-side-btn {
+        top: 15px;
+        right: 15px;
+        width: 75px;
+        height: 75px;
+        font-size: 0.85rem;
+      }
+    }
   </style>
 </head>
 <body>
@@ -285,20 +308,18 @@
   <div class="bg-blob-1"></div>
   <div class="bg-blob-2"></div>
 
+  <!-- כפתור עגול בצד - מסתובב ופועם -->
+  <button class="quote-side-btn" onclick="openQuoteModal()">
+    <span>ציטוט</span>
+    <span>יומי</span>
+  </button>
+
   <!-- דף הבית -->
   <div id="home-page">
     <header>
       <h1 class="main-title">SUMMER 2026</h1><br>
       <div class="sub-title" onclick="openFamilyModal()">אהרמנים מזלות</div>
     </header>
-
-    <!-- כפתור עגול, מסתובב ואינטראקטיבי -->
-    <div class="quote-btn-wrapper">
-      <button class="btn-spin-circle" onclick="openQuoteModal()">
-        <span>🗣️</span>
-        <span>מי אמר?</span>
-      </button>
-    </div>
 
     <div class="grid-container">
       <div class="card" onclick="openDay('יום שלישי: טיסה לפראג')"><h3>יום שלישי:<br>טיסה לפראג</h3></div>
@@ -333,7 +354,7 @@
     </div>
   </div>
 
-  <!-- פופ אפ משפחה עם קונפטי -->
+  <!-- פופ אפ משפחה -->
   <div id="family-modal" class="modal-overlay" onclick="closeFamilyModal()">
     <div class="modal-card" onclick="event.stopPropagation()">
       <div class="confetti-container" id="confetti-box"></div>
@@ -342,25 +363,24 @@
     </div>
   </div>
 
-  <!-- פופ אפ ציטוטים - מציג משפט אחד בלבד -->
+  <!-- פופ אפ ציטוטים - משפט אחד בלבד -->
   <div id="quote-modal" class="modal-overlay" onclick="closeQuoteModal()">
     <div class="modal-card" style="background: #00d2d3;" onclick="event.stopPropagation()">
-      <!-- כפתור הגדרות מוצנע -->
       <button class="btn-settings-toggle" onclick="toggleManagePanel()" title="ניהול משפטים">⚙️</button>
 
-      <h3 style="margin-top:0; font-size: 1.4rem; color: #0f281e;">מי אמר למי? 🤔</h3>
+      <h3 style="margin-top:0; font-size: 1.4rem; color: #0f281e;">מי אמר למי?</h3>
       <h2 id="quote-text" style="font-size: 2.2rem; color: #0f281e; text-shadow: none; min-height: 100px; display: flex; align-items: center; justify-content: center; margin: 15px 0;"></h2>
       
-      <button class="btn-pop" style="background: #feca57; margin-top: 10px;" onclick="closeQuoteModal()">הבנתי! 😂</button>
+      <button class="btn-pop" style="background: #feca57; margin-top: 10px;" onclick="closeQuoteModal()">סגור</button>
 
-      <!-- פאנל ניהול משפטים מוצנע -->
+      <!-- פאנל ניהול מוצנע -->
       <div id="quote-manage-panel" class="quote-manage-panel">
         <div style="margin-bottom: 10px;">
-          <button class="btn-pop btn-small" style="background: #ff4757; color:#fff;" onclick="deleteCurrentQuote()">🗑️ מחק משפט זה</button>
+          <button class="btn-pop btn-small" style="background: #ff4757; color:#fff;" onclick="deleteCurrentQuote()">מחק משפט זה</button>
         </div>
         <div class="quote-input-group">
           <input type="text" id="new-quote-input" class="quote-input" placeholder="הוסף משפט חדש...">
-          <button class="btn-pop btn-small" style="background: #10ac84; color: #fff;" onclick="addQuote()">➕ הוסף</button>
+          <button class="btn-pop btn-small" style="background: #10ac84; color: #fff;" onclick="addQuote()">הוסף</button>
         </div>
       </div>
     </div>
@@ -455,10 +475,8 @@
 
     function openQuoteModal() {
       playSound('quote');
-      // סגירת פאנל הניהול בברירת מחדל
       document.getElementById('quote-manage-panel').classList.remove('show');
       
-      // בחירת משפט אחד אקראי בלבד
       if (quotes.length > 0) {
         currentQuoteIndex = Math.floor(Math.random() * quotes.length);
         document.getElementById('quote-text').innerHTML = quotes[currentQuoteIndex];
