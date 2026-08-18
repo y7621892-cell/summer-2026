@@ -104,7 +104,13 @@
       margin-top: 20px;
       transform: rotate(2deg);
       border-radius: 12px;
+      cursor: pointer;
       animation: floatSub 3s ease-in-out infinite alternate;
+      transition: transform 0.2s ease;
+    }
+
+    .sub-title:hover {
+      transform: rotate(0deg) scale(1.08) !important;
     }
 
     @keyframes floatSub {
@@ -242,6 +248,57 @@
       margin: 0;
       color: var(--border-dark);
     }
+
+    /* מסך פופ-אפ למשפחה המגניבה */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(15, 40, 30, 0.85);
+      backdrop-filter: blur(8px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+      padding: 20px;
+    }
+
+    .modal-overlay.open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .modal-card {
+      background: #ff6b6b;
+      border: 5px solid var(--border-dark);
+      box-shadow: 15px 15px 0px var(--border-dark);
+      border-radius: 35px;
+      padding: 50px 30px;
+      text-align: center;
+      max-width: 600px;
+      width: 100%;
+      transform: scale(0.7) rotate(-5deg);
+      transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+      position: relative;
+    }
+
+    .modal-overlay.open .modal-card {
+      transform: scale(1) rotate(0deg);
+    }
+
+    .modal-card h2 {
+      font-size: clamp(2.2rem, 6vw, 3.8rem);
+      font-weight: 900;
+      color: #ffffff;
+      text-shadow: 5px 5px 0px var(--border-dark);
+      margin: 0 0 30px 0;
+      line-height: 1.2;
+    }
   </style>
 </head>
 <body>
@@ -254,7 +311,7 @@
   <div id="home-page">
     <header>
       <h1 class="main-title">SUMMER 2026</h1><br>
-      <div class="sub-title">אהרמנים מזלות</div>
+      <div class="sub-title" onclick="openFamilyModal()">אהרמנים מזלות</div>
     </header>
 
     <div class="grid-container">
@@ -294,6 +351,14 @@
     </div>
   </div>
 
+  <!-- חלון הודעה למשפחה המגניבה -->
+  <div id="family-modal" class="modal-overlay" onclick="closeFamilyModal()">
+    <div class="modal-card" onclick="event.stopPropagation()">
+      <h2>איזה משפחה מגניבה אנחנו😍😝🤩💪</h2>
+      <button class="btn-pop" style="background: #feca57;" onclick="closeFamilyModal()">חד משמעית! 🔥</button>
+    </div>
+  </div>
+
   <script>
     let currentDayName = "";
 
@@ -312,6 +377,14 @@
 
     function generateVideo() {
       alert("מנגנון יצירת הוידאו עבור " + currentDayName + " יופעל ברגע שנחבר את התמונות!");
+    }
+
+    function openFamilyModal() {
+      document.getElementById('family-modal').classList.add('open');
+    }
+
+    function closeFamilyModal() {
+      document.getElementById('family-modal').classList.remove('open');
     }
 
     function revealOnScroll() {
