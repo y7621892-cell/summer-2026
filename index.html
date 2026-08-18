@@ -7,6 +7,10 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Rubik:wght@800;900&display=swap" rel="stylesheet">
+  
+  <!-- ספרית קונפטי -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
   <style>
     :root {
       --border-dark: #0f281e;
@@ -249,7 +253,7 @@
       color: var(--border-dark);
     }
 
-    /* מסך פופ-אפ למשפחה המגניבה */
+    /* חלון פופ-אפ */
     .modal-overlay {
       position: fixed;
       top: 0;
@@ -351,7 +355,7 @@
     </div>
   </div>
 
-  <!-- חלון הודעה למשפחה המגניבה -->
+  <!-- פופ-אפ משפחה -->
   <div id="family-modal" class="modal-overlay" onclick="closeFamilyModal()">
     <div class="modal-card" onclick="event.stopPropagation()">
       <h2>איזה משפחה מגניבה אנחנו😍😝🤩💪</h2>
@@ -381,6 +385,15 @@
 
     function openFamilyModal() {
       document.getElementById('family-modal').classList.add('open');
+      
+      /* הפעלת חגיגת קונפטי */
+      if (typeof confetti === 'function') {
+        confetti({
+          particleCount: 120,
+          spread: 80,
+          origin: { y: 0.6 }
+        });
+      }
     }
 
     function closeFamilyModal() {
